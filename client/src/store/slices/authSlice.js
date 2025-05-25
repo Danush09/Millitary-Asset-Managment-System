@@ -47,44 +47,47 @@ export const register = createAsyncThunk(
 );
 
 export const login = createAsyncThunk(
-    'auth/login',
-    async (credentials, { rejectWithValue }) => {
-        try {
-            console.log('Login attempt with credentials:', credentials);
-            const response = await axios.post(
-              `${process.env.REACT_APP_API_URL}/auth/login`, { email, password }
-            );
-            console.log('Login response:', response.data);
+  'auth/login',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const { email, password } = credentials;
+      console.log('Login attempt with credentials:', credentials);
 
-            if (!response.data.success) {
-                console.error('Login failed:', response.data.message);
-                return rejectWithValue(response.data.message);
-            }
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        { email, password }
+      );
+      console.log('Login response:', response.data);
 
-            const { token, user } = response.data.data;
+      if (!response.data.success) {
+        console.error('Login failed:', response.data.message);
+        return rejectWithValue(response.data.message);
+      }
 
-            if (!token || !user) {
-                console.error('Invalid response data:', response.data);
-                return rejectWithValue('Invalid response from server');
-            }
+      const { token, user } = response.data.data;
 
-            // Store token in localStorage
-            localStorage.setItem('token', token);
-            console.log('Token stored in localStorage');
+      if (!token || !user) {
+        console.error('Invalid response data:', response.data);
+        return rejectWithValue('Invalid response from server');
+      }
 
-            // Set token in axios headers
-            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-            console.log('Token set in axios headers');
+      // Store token in localStorage
+      localStorage.setItem('token', token);
+      console.log('Token stored in localStorage');
 
-            return { user, token };
-        } catch (error) {
-            console.error('Login error:', error.response?.data || error.message);
-            // Clear any existing invalid token
-            localStorage.removeItem('token');
-            delete axios.defaults.headers.common['Authorization'];
-            return rejectWithValue(error.response?.data?.message || 'Login failed');
-        }
+      // Set token in axios headers
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      console.log('Token set in axios headers');
+
+      return { user, token };
+    } catch (error) {
+      console.error('Login error:', error.response?.data || error.message);
+      // Clear any existing invalid token
+      localStorage.removeItem('token');
+      delete axios.defaults.headers.common['Authorization'];
+      return rejectWithValue(error.response?.data?.message || 'Login failed');
     }
+  }
 );
 
 export const verifyToken = createAsyncThunk(
