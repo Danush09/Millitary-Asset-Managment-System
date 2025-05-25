@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://millitary-asset-managment-system.onrender.com/api',
+    baseURL: 'https://millitary-asset-managment-system-backend.onrender.com',
     headers: {
         'Content-Type': 'application/json'
     },
