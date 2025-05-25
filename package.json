@@ -5,6 +5,7 @@
     "@mui/material": "^7.1.0",
     "@mui/x-date-pickers": "^8.3.1",
     "date-fns": "^4.1.0",
-    "recharts": "^2.15.3"
+    "recharts": "^2.15.3",
+    "serve": "^14.2.4"
   }
 }
