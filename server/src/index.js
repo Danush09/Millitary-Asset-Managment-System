@@ -28,7 +28,6 @@ const corsOptions = {
     exposedHeaders: ['Authorization'],
     credentials: false
 };
-💡 If you ar
 
 // Middleware
 app.use(cors(corsOptions));
