@@ -18,11 +18,12 @@
         "react-router-dom": "^6.30.0",
         "react-scripts": "5.0.1",
         "recharts": "^2.15.3",
+        "serve": "^14.2.4",
         "web-vitals": "^5.0.1"
     },
     "scripts": {
-          "start": "serve -s build",
-      "build": "react-scripts build",
+        "start": "serve -s build",
+        "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"
     },
