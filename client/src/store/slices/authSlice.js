@@ -51,7 +51,9 @@ export const login = createAsyncThunk(
     async (credentials, { rejectWithValue }) => {
         try {
             console.log('Login attempt with credentials:', credentials);
-            const response = await axios.post('/auth/login', credentials);
+            const response = await axios.post(
+              `${process.env.REACT_APP_API_URL}/auth/login`, { email, password }
+            );
             console.log('Login response:', response.data);
 
             if (!response.data.success) {
