@@ -10,13 +10,25 @@ dotenv.config();
 const app = express();
 
 // CORS configuration
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://millitary-asset-managment-system-4n0q.onrender.com'
+];
+
 const corsOptions = {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000', // React app's address
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     exposedHeaders: ['Authorization'],
-    credentials: false // Using token-based auth
+    credentials: false
 };
+💡 If you ar
 
 // Middleware
 app.use(cors(corsOptions));
