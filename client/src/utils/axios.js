@@ -1,13 +1,11 @@
 import axios from 'axios';
 
 const instance = axios.create({
-    baseURL: 'https://millitary-asset-managment-system.onrender.com/api',
+    baseURL: 'http://localhost:5000/api',
     headers: {
         'Content-Type': 'application/json'
-    },
-    withCredentials: true
+    }
 });
-
 
 // Add a request interceptor to add the auth token to requests
 instance.interceptors.request.use(
