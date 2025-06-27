@@ -12,7 +12,7 @@ const app = express();
 // CORS configuration
 const allowedOrigins = [
     'http://localhost:3000',
-    'https://millitary-asset-managment-system-4n0q.onrender.com'
+    'https://millitary-asset-managment-system-fr.vercel.app'
 ];
 
 const corsOptions = {
