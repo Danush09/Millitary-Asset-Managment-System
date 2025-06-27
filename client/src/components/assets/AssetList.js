@@ -34,7 +34,7 @@ import axiosInstance from '../../utils/axios';
 const AssetList = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const { user } = useAuth();
+    //const { user } = useAuth();
     const [assets, setAssets] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
